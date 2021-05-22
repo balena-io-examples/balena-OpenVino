@@ -1,0 +1,23 @@
+FROM balenalib/amd64-ubuntu:focal
+ENV UDEV=1
+ARG DEBIAN_FRONTEND=noninteractive
+WORKDIR /usr/src/app
+
+RUN apt-get update && apt-get install -y curl wget git gnupg2 apt-transport-https gnupg ca-certificates lsb-release python3-dev cmake python3-pip
+
+RUN wget https://apt.repos.intel.com/openvino/2021/GPG-PUB-KEY-INTEL-OPENVINO-2021
+RUN apt-key add GPG-PUB-KEY-INTEL-OPENVINO-2021 && echo "deb https://apt.repos.intel.com/openvino/2021 all main" | sudo tee /etc/apt/sources.list.d/intel-openvino-2021.list
+RUN apt-get update && apt-get install -y intel-openvino-dev-ubuntu20-2021.3.394
+
+RUN apt-get install -y xfce4 xinit xserver-xorg xserver-xorg-video-fbdev xinit pciutils xfonts-100dpi xfonts-75dpi xfonts-scalable xterm xfce4-terminal
+RUN pip3 install numpy scipy pyyaml 
+RUN echo "source /opt/intel/openvino_2021.3.394/bin/setupvars.sh" >> ~/.bashrc
+
+RUN mkdir /opt/intel/openvino_2021.3.394/deployment_tools/open_model_zoo/demos/models && cd /opt/intel/openvino_2021/deployment_tools/tools/model_downloader && ./downloader.py --name pedestrian-detection-adas-0002 --output_dir /opt/intel/openvino_2021.3.394/deployment_tools/open_model_zoo/demos/models
+
+COPY start.sh start.sh
+
+CMD ["/bin/bash", "start.sh"]
+# RUN bash -c "python3 /opt/intel/openvino_2021.3.394/deployment_tools/open_model_zoo/demos/object_detection_demo/python/object_detection_demo.py -i /dev/video0 -m /opt/intel/openvino_2021.3.394/deployment_tools/open_model_zoo/demos/models/intel/pedestrian-detection-adas-0002/FP16/pedestrian-detection-adas-0002.xml -at ssd -d MYRIAD"
+
+
