@@ -14,4 +14,5 @@ services:
             - "data:/app/data"
         devices:
             - "/dev:/dev"
-
+        labels:
+            io.balena.features.dbus: '1'
