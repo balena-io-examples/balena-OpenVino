@@ -13,11 +13,13 @@ RUN apt-get update && apt-get install -y xfce4 xinit xserver-xorg xserver-xorg-v
 RUN pip3 install numpy scipy pyyaml 
 RUN echo "source /opt/intel/openvino_2021.3.394/bin/setupvars.sh" >> ~/.bashrc
 
-RUN mkdir /opt/intel/openvino_2021.3.394/deployment_tools/open_model_zoo/demos/models && cd /opt/intel/openvino_2021/deployment_tools/tools/model_downloader && ./downloader.py --name pedestrian-detection-adas-0002 --output_dir /opt/intel/openvino_2021.3.394/deployment_tools/open_model_zoo/demos/models
+RUN mkdir /opt/intel/openvino_2021.3.394/deployment_tools/open_model_zoo/demos/models && cd /opt/intel/openvino_2021/deployment_tools/tools/model_downloader && ./downloader.py --name product-detection-0001 --output_dir /opt/intel/openvino_2021.3.394/deployment_tools/open_model_zoo/demos/models
+
+RUN cd /opt/intel/openvino_2021/deployment_tools/tools/model_downloader && ./downloader.py --name pedestrian-detection-adas-0002 --output_dir /opt/intel/openvino_2021.3.394/deployment_tools/open_model_zoo/demos/models
 
 COPY start.sh start.sh
+COPY labels.txt labels.txt
 CMD ["/bin/bash", "start.sh"]
 
-# RUN bash -c "python3 /opt/intel/openvino_2021.3.394/deployment_tools/open_model_zoo/demos/object_detection_demo/python/object_detection_demo.py -i /dev/video0 -m /opt/intel/openvino_2021.3.394/deployment_tools/open_model_zoo/demos/models/intel/pedestrian-detection-adas-0002/FP16/pedestrian-detection-adas-0002.xml -at ssd -d MYRIAD"
 
 
