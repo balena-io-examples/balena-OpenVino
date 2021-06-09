@@ -17,8 +17,10 @@ RUN mkdir /opt/intel/openvino_2021.3.394/deployment_tools/open_model_zoo/demos/m
 
 RUN cd /opt/intel/openvino_2021/deployment_tools/tools/model_downloader && ./downloader.py --name pedestrian-detection-adas-0002 --output_dir /opt/intel/openvino_2021.3.394/deployment_tools/open_model_zoo/demos/models
 
+RUN cd /opt/intel/openvino_2021/deployment_tools/tools/model_downloader && ./downloader.py --name human-pose-estimation-0001 --output_dir /opt/intel/openvino_2021.3.394/deployment_tools/open_model_zoo/demos/models
+
 COPY start.sh start.sh
-COPY labels.txt labels.txt
+
 CMD ["/bin/bash", "start.sh"]
 
 
