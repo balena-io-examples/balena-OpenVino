@@ -6,18 +6,20 @@ RUN apt-get update && apt-get install -y curl wget git gnupg2 apt-transport-http
 
 RUN wget https://apt.repos.intel.com/openvino/2021/GPG-PUB-KEY-INTEL-OPENVINO-2021
 RUN apt-key add GPG-PUB-KEY-INTEL-OPENVINO-2021 && echo "deb https://apt.repos.intel.com/openvino/2021 all main" | sudo tee /etc/apt/sources.list.d/intel-openvino-2021.list
-RUN apt-get update && apt-get install -y intel-openvino-dev-ubuntu20-2021.3.394
+RUN apt-get update && apt-get install -y intel-openvino-dev-ubuntu20-2021.4.582
 
 RUN apt-get update && apt-get install -y xfce4 xinit xserver-xorg xserver-xorg-video-fbdev xinit pciutils xfonts-100dpi xfonts-75dpi xfonts-scalable xterm xfce4-terminal xserver-xorg-input-evdev dbus-x11 matchbox-keyboard firefox
 
 RUN pip3 install numpy scipy pyyaml 
-RUN echo "source /opt/intel/openvino_2021.3.394/bin/setupvars.sh" >> ~/.bashrc
+RUN echo "source /opt/intel/openvino_2021.4.582/bin/setupvars.sh" >> ~/.bashrc
 
-RUN mkdir /opt/intel/openvino_2021.3.394/deployment_tools/open_model_zoo/demos/models && cd /opt/intel/openvino_2021/deployment_tools/tools/model_downloader && ./downloader.py --name product-detection-0001 --output_dir /opt/intel/openvino_2021.3.394/deployment_tools/open_model_zoo/demos/models
+RUN mkdir /opt/intel/openvino_2021.4.582/deployment_tools/open_model_zoo/demos/models && cd /opt/intel/openvino_2021/deployment_tools/tools/model_downloader && ./downloader.py --name product-detection-0001 --output_dir /opt/intel/openvino_2021.4.582/deployment_tools/open_model_zoo/demos/models
 
-RUN cd /opt/intel/openvino_2021/deployment_tools/tools/model_downloader && ./downloader.py --name pedestrian-detection-adas-0002 --output_dir /opt/intel/openvino_2021.3.394/deployment_tools/open_model_zoo/demos/models
+RUN cd /opt/intel/openvino_2021/deployment_tools/tools/model_downloader && ./downloader.py --name pedestrian-detection-adas-0002 --output_dir /opt/intel/openvino_2021.4.582/deployment_tools/open_model_zoo/demos/models
 
-RUN cd /opt/intel/openvino_2021/deployment_tools/tools/model_downloader && ./downloader.py --name human-pose-estimation-0001 --output_dir /opt/intel/openvino_2021.3.394/deployment_tools/open_model_zoo/demos/models
+RUN cd /opt/intel/openvino_2021/deployment_tools/tools/model_downloader && ./downloader.py --name human-pose-estimation-0001 --output_dir /opt/intel/openvino_2021.4.582/deployment_tools/open_model_zoo/demos/models
+
+RUN cd /opt/intel/openvino_2021/deployment_tools/tools/model_downloader && ./downloader.py --name semantic-segmentation-adas-0001 --output_dir /opt/intel/openvino_2021.4.582/deployment_tools/open_model_zoo/demos/models
 
 COPY start.sh start.sh
 
