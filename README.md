@@ -2,7 +2,7 @@
 
 This repo allows you to run OpenVINO AI/ML demos on Intel x86 hardware like a NUC, in a container, managed by balenaCloud.  You need a monitor, keyboard/mouse, and USB webcam hooked up to the NUC.
 
-[![balena deploy button](https://www.balena.io/deploy.svg)](https://dashboard.balena-cloud.com/deploy?repoUrl=https://github.com/balena-io-playground/balena-OpenVino)
+[![balena deploy button](https://www.balena.io/deploy.svg)](https://dashboard.balena-cloud.com/deploy?repoUrl=https://github.com/balena-io-examples/balena-OpenVino)
 
 This is interesting for several reasons, but first and foremost it allows you to remotely update an Edge AI device and push new applications and models to a device no matter where it is located.  In this repo, as a sample, we download and install Object Detection and Human Pose Estimation, along with their corresponding models: `pedestrian-detection-adas-0002`, `product-detection-0001`, and `human-pose-estimation-0001`.
 
