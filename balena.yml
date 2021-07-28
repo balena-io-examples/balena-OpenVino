@@ -1,0 +1,19 @@
+name: balena-OpenVino
+type: sw.application
+description: >-
+  This repo allows you to run OpenVINO AI/ML demos on Intel x86 hardware like a NUC, in a container, managed by balenaCloud. You need a monitor, keyboard/mouse, and USB webcam hooked up to the NUC.
+assets:
+  repository:
+    type: blob.asset
+    data:
+      url: 'https://github.com/balena-io-examples/balena-OpenVino'
+data:
+  applicationEnvironmentVariables:
+    - DEMO: object_detection_demo
+    - MODEL: pedestrian-detection-adas-0002
+    - ARCHITECTURE_TYPE: ssd
+  defaultDeviceType: intel-nuc
+  supportedDeviceTypes:
+    - genericx86-64-ext
+    - intel-nuc
+version: 1.0
