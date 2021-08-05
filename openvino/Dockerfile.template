@@ -1,4 +1,4 @@
-FROM balenalib/amd64-ubuntu:focal
+FROM balenalib/%%BALENA_MACHINE_NAME%%-ubuntu:focal
 ARG DEBIAN_FRONTEND=noninteractive
 WORKDIR /usr/src/app
 
