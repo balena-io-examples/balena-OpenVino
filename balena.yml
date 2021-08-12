@@ -1,5 +1,6 @@
 name: balena-OpenVino
 type: sw.application
+fleetcta: OpenVino Edge AI on balena
 description: >-
   This repo allows you to run OpenVINO AI/ML demos on Intel x86 hardware like a NUC, in a container, managed by balenaCloud. You need a monitor, keyboard/mouse, and USB webcam hooked up to the NUC.
 assets:
@@ -7,6 +8,10 @@ assets:
     type: blob.asset
     data:
       url: 'https://github.com/balena-io-examples/balena-OpenVino'
+  logo:
+    type: blob.asset
+    data:
+      url: 'https://opencv.org/anniversary/20/wp-content/uploads/2019/04/IM2.jpg'
 data:
   applicationEnvironmentVariables:
     - DEMO: object_detection_demo
