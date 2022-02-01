@@ -1,4 +1,4 @@
-name: balena-OpenVino
+name: OpenVino
 type: sw.application
 fleetcta: OpenVino Edge AI on balena
 description: >-
