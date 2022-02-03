@@ -37,9 +37,33 @@ from images_capture import open_images_capture
 from performance_metrics import PerformanceMetrics
 from helpers import resolution
 
+from twilio.rest import Client
+import datetime
+import os
+
 logging.basicConfig(format='[ %(levelname)s ] %(message)s', level=logging.DEBUG)
 log = logging.getLogger()
+text_time = datetime.datetime(2022, 2, 1, 10, 15, 30) # Random time in past
 
+def send_text(label):
+    global text_time
+    now_time = datetime.datetime.now()
+    diff_time = now_time - text_time
+    #print("send text diff: {}".format(diff_time.total_seconds()))
+    if diff_time.total_seconds() > os.environ['TEXTING_DELAY_SECS']:
+        account_sid = os.environ['TWILIO_ACCOUNT_SID']
+        auth_token = os.environ['TWILIO_AUTH_TOKEN']
+        client = Client(account_sid, auth_token)
+        print("Preparing to send text...")
+        message = client.messages \
+                    .create(
+                         body="Your OpenVINO system just detected object: {}".format(label),
+                         from_= str(os.environ['TEXT_FROM_NUM']),
+                         to = str(os.environ['TEXT_TO_NUM'])
+                     )
+
+        print("Text sent. SID: {}".format(message.sid))
+        text_time = datetime.datetime.now()
 
 def build_argparser():
     parser = ArgumentParser(add_help=False)
@@ -196,6 +220,7 @@ def draw_detections(frame, detections, palette, labels, threshold, output_transf
             class_id = int(detection.id)
             color = palette[class_id]
             det_label = labels[class_id] if labels and len(labels) >= class_id else '#{}'.format(class_id)
+            send_text(det_label)
             print("#1c {0} - {1}".format(detection.score, det_label))
             xmin = max(int(detection.xmin), 0)
             ymin = max(int(detection.ymin), 0)
@@ -227,6 +252,8 @@ def print_raw_results(size, detections, labels, threshold):
 
 
 def main():
+    text_time = datetime.datetime.now()
+    
     args = build_argparser().parse_args()
 
     log.info('Initializing Inference Engine...')
