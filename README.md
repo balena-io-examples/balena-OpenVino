@@ -35,4 +35,4 @@ You can send SMS texts via a Twilio account when a detection occurs. You'll need
 
 `TWILIO_ACCOUNT_SID` and `TWILIO_AUTH_TOKEN` - from your Twilio account
 
-`TEXT_TO_NUM` - also from your Twilio account.
+`TEXT_FROM_NUM` - This is created inside of your Twilio account.
