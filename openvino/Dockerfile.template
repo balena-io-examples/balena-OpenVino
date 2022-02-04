@@ -25,6 +25,7 @@ RUN chmod +x /opt/intel/openvino_2021.4.689/install_dependencies/install_NEO_OCL
 
 RUN /bin/bash /opt/intel/openvino_2021.4.689/install_dependencies/install_NEO_OCL_driver.sh -a -y
 
+COPY product-list.txt product-list.txt
 COPY start.sh start.sh
 
 CMD ["/bin/bash", "start.sh"]
