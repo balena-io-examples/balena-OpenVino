@@ -220,7 +220,8 @@ def draw_detections(frame, detections, palette, labels, threshold, output_transf
             class_id = int(detection.id)
             color = palette[class_id]
             det_label = labels[class_id] if labels and len(labels) >= class_id else '#{}'.format(class_id)
-            send_text(det_label)
+            if 'TEXT_TO_NUM' in os.environ:
+                send_text(det_label)
             print("Detection: {0} - {1}".format(detection.score, det_label))
             xmin = max(int(detection.xmin), 0)
             ymin = max(int(detection.ymin), 0)
