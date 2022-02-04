@@ -57,7 +57,7 @@ def send_text(label):
         print("Preparing to send text...")
         message = client.messages \
                     .create(
-                         body="Your OpenVINO system just detected object: {}".format(label),
+                         body="Your OpenVino system just detected object: {}".format(label),
                          from_= str(os.environ['TEXT_FROM_NUM']),
                          to = str(os.environ['TEXT_TO_NUM'])
                      )
