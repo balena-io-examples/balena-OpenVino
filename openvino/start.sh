@@ -1,4 +1,6 @@
 #!/usr/bin/bash
+cp object_detection_demo.py /opt/intel/openvino_2021.4.689/deployment_tools/open_model_zoo/demos/object_detection_demo/python/object_detection_demo.py
+cp product-list.txt /opt/intel/openvino_2021.4.689/deployment_tools/open_model_zoo/demos/object_detection_demo/python/product-list.txt
 export DISPLAY=:0
 export DBUS_SYSTEM_BUS_ADDRESS=unix:path=/host/run/dbus/system_bus_socket
 X &
