@@ -28,6 +28,7 @@ Once your 3 values are entered, your container will start, and you'll see the de
 
 ### Sending texts
 You can send SMS texts via a Twilio account when a detection occurs. You'll need to set the following variables:
+
 `TEXT_TO_NUM` - The phone number to text to. Delete this variable to disable texting.
 
 ` TEXTING_DELAY_SECS` - Number of seconds to delay between sending texts.
