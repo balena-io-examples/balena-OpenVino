@@ -26,3 +26,12 @@ Finally, the `ARCHITECTURE_TYPE` Variable, has only 1 possible candidate for eac
 
 Once your 3 values are entered, your container will start, and you'll see the device do inferencing on the live camera feed!
 
+### Sending texts
+You can send SMS texts via a Twilio account when a detection occurs. You'll need to set the following variables:
+`TEXT_TO_NUM` - The phone number to text to. Delete this variable to disable texting.
+
+` TEXTING_DELAY_SECS` - Number of seconds to delay between sending texts.
+
+`TWILIO_ACCOUNT_SID` and `TWILIO_AUTH_TOKEN` - from your Twilio account
+
+`TEXT_TO_NUM` - also from your Twilio account.
