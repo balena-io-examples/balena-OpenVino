@@ -221,7 +221,7 @@ def draw_detections(frame, detections, palette, labels, threshold, output_transf
             color = palette[class_id]
             det_label = labels[class_id] if labels and len(labels) >= class_id else '#{}'.format(class_id)
             send_text(det_label)
-            print("#1c {0} - {1}".format(detection.score, det_label))
+            print("Detection: {0} - {1}".format(detection.score, det_label))
             xmin = max(int(detection.xmin), 0)
             ymin = max(int(detection.ymin), 0)
             xmax = min(int(detection.xmax), size[1])
@@ -288,14 +288,12 @@ def main():
         # Process all completed requests
         results = detector_pipeline.get_result(next_frame_id_to_show)
         if results:
-            print("#1")
             objects, frame_meta = results
             frame = frame_meta['frame']
             start_time = frame_meta['start_time']
 
             if len(objects) and args.raw_output_message:
                 print_raw_results(frame.shape[:2], objects, model.labels, args.prob_threshold)
-                print("#1b: {}".format(model.labels))
 
             presenter.drawGraphs(frame)
             frame = draw_detections(frame, objects, palette, model.labels, args.prob_threshold, output_transform)
@@ -363,11 +361,9 @@ def main():
 
         if video_writer.isOpened() and (args.output_limit <= 0 or next_frame_id_to_show <= args.output_limit-1):
             video_writer.write(frame)
-            print("#2")
 
         if not args.no_show:
             cv2.imshow('Detection Results', frame)
-            print("#3")
             key = cv2.waitKey(1)
 
             ESC_KEY = 27
